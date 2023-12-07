@@ -7,18 +7,26 @@
 
 import Foundation
 
-struct APIClient {
+protocol NextRacesFetching {
+    func fetchNextRaces() async throws -> [Race]
+}
+
+struct APIClient: NextRacesFetching {
+    
+    private let session: URLSession
+
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
     
     /**
-     HTTP Get method to get a list of next to go races by count.
+     HTTP Get method to get a list of next to go races. The default count is 10.
      
-     - Parameter count: number of next to go races to be included in the response.
-     
-     - Returns: a list of next to go races.
+     - Returns: a list of 10 next to go races.
      
      */
-    func nextRacesByCount(_ count: Int) async throws-> [Race] {
-        guard let url = APIEndpoint.endpointURL(for: .nextRacesByCount(count)) else {
+    func fetchNextRaces() async throws -> [Race] {
+        guard let url = APIEndpoint.endpointURL(for: .nextRaces) else {
             throw NetworkError.invalidURL
         }
         let (data, response) = try await URLSession.shared.data(from: url)

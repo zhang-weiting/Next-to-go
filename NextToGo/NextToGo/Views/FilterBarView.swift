@@ -9,21 +9,14 @@ import SwiftUI
 
 struct FilterBarView: View {
     
-    @Binding var viewModel: HomeScreenVM
+    @Bindable var homeScreenVM: HomeScreenVM
     
     var body: some View {
         HStack(spacing: 25) {
             Spacer()
-            ForEach(RaceType.allCases, id: \.self) { race in
-                IndicatorImageView(race: race, handler: { bool in
-                    switch race {
-                    case .greyhound:
-                        viewModel.isGreyhoundSelected.toggle()
-                    case .horse:
-                        viewModel.isHorseSelected.toggle()
-                    case .harness:
-                        viewModel.isHarnessSelected.toggle()
-                    }
+            ForEach(Race.Category.allCases, id: \.self) { race in
+                IndicatorImageView(race: race, handler: { selected in
+                    homeScreenVM.updateFilters(race: race, selected: selected)
                 })
             }
             Spacer()
@@ -32,6 +25,5 @@ struct FilterBarView: View {
 }
 
 #Preview {
-    @State var vm = HomeScreenVM()
-    return FilterBarView(viewModel: $vm)
+    FilterBarView(homeScreenVM: HomeScreenVM(apiClient: APIClient()))
 }

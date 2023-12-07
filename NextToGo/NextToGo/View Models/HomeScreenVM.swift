@@ -11,42 +11,37 @@ import Observation
 @Observable
 class HomeScreenVM {
     
-    let apiClient = APIClient()
-    var raceList : [RaceViewModel] = []
-    var isFetching: Bool = false
+    private var raceList: [Race] = []
+    private let apiClient: NextRacesFetching
+    
+    init(apiClient: NextRacesFetching) {
+        self.apiClient = apiClient
+    }
+    
     var errorMessage = ""
-    var isHorseSelected = true
-    var isHarnessSelected = true
-    var isGreyhoundSelected = true
-    var isCountdowning = false
-    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    var filters: Set<Race.Category> = [.horse, .greyhound, .harness]
     
-    var sortedRaceList: [RaceViewModel] {
-        raceList.sorted {
-            $0.countdown < $1.countdown
+    var filteredRaceList: [Race] {
+        let sorted = raceList.sorted {
+            $0.advertisedStart < $1.advertisedStart
         }
+        return sorted.filter { filters.contains($0.category) }
     }
     
-    var filteredRaceList: [RaceViewModel] {
-        sortedRaceList.filter { race in
-            if (race.raceType == .greyhound && !isGreyhoundSelected) ||
-                (race.raceType == .horse && !isHorseSelected) ||
-                (race.raceType == .harness && !isHarnessSelected) {
-                return false
-            } else {
-                return true
-            }
-        }
-    }
-    
-    func fetchNextRacesByCount(_ count: Int) async {
-        isFetching = true
+    func fetchNextRaces() async {
         do {
-            let races = try await apiClient.nextRacesByCount(count)
-            raceList = races.map(RaceViewModel.init)
-            isFetching = false
+            raceList = try await apiClient.fetchNextRaces()
         } catch {
+            //TODO: error handling
             errorMessage = "Something went wrong"
+        }
+    }
+    
+    func updateFilters(race: Race.Category, selected: Bool) {
+        if selected {
+            filters.insert(race)
+        } else {
+            filters.remove(race)
         }
     }
     

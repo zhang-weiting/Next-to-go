@@ -11,12 +11,12 @@ enum APIEndpoint {
     
     static let racingBaseURL = "https://api.neds.com.au/rest/v1/racing"
     
-    case nextRacesByCount(Int)
+    case nextRaces
     
     private var path: String {
         switch self {
-        case .nextRacesByCount(let count):
-            return "/?method=nextraces&count=\(count)"
+        case .nextRaces:
+            return "/?method=nextraces&count=10"
         }
     }
     

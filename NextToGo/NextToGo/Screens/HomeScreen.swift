@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeScreen: View {
     
-    @State var homeScreenVM = HomeScreenVM()
+    @State private var homeScreenVM = HomeScreenVM(apiClient: APIClient())
     
     var body: some View {
         NavigationStack {
@@ -19,40 +19,21 @@ struct HomeScreen: View {
                     .background(.ultraThinMaterial)
                 
                 //MARK: - Filter
-                FilterBarView(viewModel: $homeScreenVM)
+                FilterBarView(homeScreenVM: homeScreenVM)
+                    .padding(.bottom)
                     .background(.ultraThinMaterial)
                 
                 //MARK: - Race List
-                List(homeScreenVM.filteredRaceList) { race in
-                    LabeledContent {
-                        Text(race.countdownDisplay)
-                    } label: {
-                        HStack() {
-                            Image(race.raceType.image)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 70)
-                            Text(race.raceNumber)
-                            Text(race.meetingName)
-                        }
-                    }
+                List(homeScreenVM.filteredRaceList, id: \.raceId) { race in
+                    LabeledContentCell(race: race)
                 }
-                .task(id: homeScreenVM.isFetching) {
-                    if homeScreenVM.isFetching {
-                        await homeScreenVM.fetchNextRacesByCount(10)
-                    }
+                .task {
+                    await homeScreenVM.fetchNextRaces()
                 }
-                .animation(.default, value: homeScreenVM.filteredRaceList.count)
                 
             } //: VStack
             .navigationTitle("NEXT TO GO RACING")
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear(perform: {
-                homeScreenVM.isFetching = true
-            })
-            .onReceive(homeScreenVM.timer, perform: { _ in
-                
-            })
         } //: NavigationStack
     }
 }

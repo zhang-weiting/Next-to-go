@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DC76D5722B2129F5007C9241 /* RaceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76D5712B2129F5007C9241 /* RaceViewModelTests.swift */; };
+		DC76D5752B216C14007C9241 /* CountDownFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76D5742B216C14007C9241 /* CountDownFormat.swift */; };
+		DC76D5772B217607007C9241 /* LabeledContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76D5762B217607007C9241 /* LabeledContentCell.swift */; };
 		DCADE0F32B206E0F00799B55 /* NextToGoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE0F22B206E0F00799B55 /* NextToGoApp.swift */; };
 		DCADE0F52B206E0F00799B55 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE0F42B206E0F00799B55 /* HomeScreen.swift */; };
 		DCADE0F72B206E1100799B55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCADE0F62B206E1100799B55 /* Assets.xcassets */; };
@@ -19,13 +21,10 @@
 		DCADE1222B20713500799B55 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1212B20713500799B55 /* Color+Extensions.swift */; };
 		DCADE1272B2075E900799B55 /* NextRacesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1262B2075E900799B55 /* NextRacesResponse.swift */; };
 		DCADE1292B20766A00799B55 /* FilterBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1282B20766A00799B55 /* FilterBarView.swift */; };
-		DCADE12C2B207E0F00799B55 /* RaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE12B2B207E0F00799B55 /* RaceType.swift */; };
 		DCADE1322B2088CD00799B55 /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1312B2088CD00799B55 /* Race.swift */; };
-		DCADE1352B20899800799B55 /* RaceCategoryID.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1342B20899800799B55 /* RaceCategoryID.swift */; };
 		DCADE1382B208D9300799B55 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1372B208D9300799B55 /* APIEndpoint.swift */; };
 		DCADE13A2B208FA600799B55 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1392B208FA600799B55 /* APIClient.swift */; };
 		DCADE13C2B20924B00799B55 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE13B2B20924B00799B55 /* NetworkError.swift */; };
-		DCADE13F2B20B0F600799B55 /* RaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE13E2B20B0F600799B55 /* RaceViewModel.swift */; };
 		DCADE1412B20B83800799B55 /* HomeScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1402B20B83800799B55 /* HomeScreenVM.swift */; };
 		DCADE1452B20C84900799B55 /* IndicatorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1442B20C84900799B55 /* IndicatorImageView.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		DC76D5712B2129F5007C9241 /* RaceViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceViewModelTests.swift; sourceTree = "<group>"; };
+		DC76D5742B216C14007C9241 /* CountDownFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownFormat.swift; sourceTree = "<group>"; };
+		DC76D5762B217607007C9241 /* LabeledContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledContentCell.swift; sourceTree = "<group>"; };
 		DCADE0EF2B206E0F00799B55 /* NextToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextToGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCADE0F22B206E0F00799B55 /* NextToGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextToGoApp.swift; sourceTree = "<group>"; };
 		DCADE0F42B206E0F00799B55 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -63,13 +64,10 @@
 		DCADE1212B20713500799B55 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		DCADE1262B2075E900799B55 /* NextRacesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextRacesResponse.swift; sourceTree = "<group>"; };
 		DCADE1282B20766A00799B55 /* FilterBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBarView.swift; sourceTree = "<group>"; };
-		DCADE12B2B207E0F00799B55 /* RaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceType.swift; sourceTree = "<group>"; };
 		DCADE1312B2088CD00799B55 /* Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
-		DCADE1342B20899800799B55 /* RaceCategoryID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceCategoryID.swift; sourceTree = "<group>"; };
 		DCADE1372B208D9300799B55 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		DCADE1392B208FA600799B55 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		DCADE13B2B20924B00799B55 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		DCADE13E2B20B0F600799B55 /* RaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceViewModel.swift; sourceTree = "<group>"; };
 		DCADE1402B20B83800799B55 /* HomeScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVM.swift; sourceTree = "<group>"; };
 		DCADE1442B20C84900799B55 /* IndicatorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				DCADE0F22B206E0F00799B55 /* NextToGoApp.swift */,
-				DCADE1362B208D7300799B55 /* Clients */,
+				DCADE1362B208D7300799B55 /* Services */,
 				DCADE1232B2075B900799B55 /* Models */,
 				DCADE13D2B20B0DD00799B55 /* View Models */,
 				DCADE11C2B206E8F00799B55 /* Screens */,
@@ -177,6 +175,7 @@
 				DCADE11E2B206EE100799B55 /* HeaderView.swift */,
 				DCADE1282B20766A00799B55 /* FilterBarView.swift */,
 				DCADE1442B20C84900799B55 /* IndicatorImageView.swift */,
+				DC76D5762B217607007C9241 /* LabeledContentCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,7 +200,6 @@
 		DCADE12A2B207E0100799B55 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				DCADE12B2B207E0F00799B55 /* RaceType.swift */,
 				DCADE13B2B20924B00799B55 /* NetworkError.swift */,
 			);
 			path = Enums;
@@ -210,24 +208,23 @@
 		DCADE1332B20897400799B55 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				DCADE1342B20899800799B55 /* RaceCategoryID.swift */,
+				DC76D5742B216C14007C9241 /* CountDownFormat.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		DCADE1362B208D7300799B55 /* Clients */ = {
+		DCADE1362B208D7300799B55 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				DCADE1372B208D9300799B55 /* APIEndpoint.swift */,
 				DCADE1392B208FA600799B55 /* APIClient.swift */,
 			);
-			path = Clients;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		DCADE13D2B20B0DD00799B55 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				DCADE13E2B20B0F600799B55 /* RaceViewModel.swift */,
 				DCADE1402B20B83800799B55 /* HomeScreenVM.swift */,
 			);
 			path = "View Models";
@@ -366,16 +363,15 @@
 				DCADE0F52B206E0F00799B55 /* HomeScreen.swift in Sources */,
 				DCADE1382B208D9300799B55 /* APIEndpoint.swift in Sources */,
 				DCADE1272B2075E900799B55 /* NextRacesResponse.swift in Sources */,
-				DCADE13F2B20B0F600799B55 /* RaceViewModel.swift in Sources */,
 				DCADE11F2B206EE100799B55 /* HeaderView.swift in Sources */,
 				DCADE0F32B206E0F00799B55 /* NextToGoApp.swift in Sources */,
 				DCADE1322B2088CD00799B55 /* Race.swift in Sources */,
 				DCADE1412B20B83800799B55 /* HomeScreenVM.swift in Sources */,
 				DCADE1292B20766A00799B55 /* FilterBarView.swift in Sources */,
 				DCADE1222B20713500799B55 /* Color+Extensions.swift in Sources */,
-				DCADE1352B20899800799B55 /* RaceCategoryID.swift in Sources */,
+				DC76D5752B216C14007C9241 /* CountDownFormat.swift in Sources */,
+				DC76D5772B217607007C9241 /* LabeledContentCell.swift in Sources */,
 				DCADE13C2B20924B00799B55 /* NetworkError.swift in Sources */,
-				DCADE12C2B207E0F00799B55 /* RaceType.swift in Sources */,
 				DCADE13A2B208FA600799B55 /* APIClient.swift in Sources */,
 				DCADE1452B20C84900799B55 /* IndicatorImageView.swift in Sources */,
 			);

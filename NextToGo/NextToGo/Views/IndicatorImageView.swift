@@ -9,13 +9,13 @@ import SwiftUI
 
 struct IndicatorImageView: View {
     
-    let race : RaceType
+    let race : Race.Category
     var handler: (Bool) -> Void
     @State var isSelected = true
     
     var body: some View {
         VStack(spacing: 0) {
-            Image(race.image)
+            Image("\(race.description)Racing")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80, height: 80)
