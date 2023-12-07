@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeScreen: View {
     
+    @Environment(\.scenePhase) var scenePhase
     @State private var homeScreenVM = HomeScreenVM(apiClient: APIClient())
     
     var body: some View {
@@ -25,7 +26,7 @@ struct HomeScreen: View {
                 
                 //MARK: - Race List
                 List(homeScreenVM.renderedList(), id: \.raceId) { race in
-                    LabeledContentCell(race: race)
+                    LabeledContentCell(race: race, homeScreenVM: homeScreenVM)
                 }
                 .task {
                     await homeScreenVM.fetchNextRaces()
@@ -34,6 +35,14 @@ struct HomeScreen: View {
             } //: VStack
             .navigationTitle("NEXT TO GO RACING")
             .navigationBarTitleDisplayMode(.inline)
+            
+            .onChange(of: scenePhase) {
+                if scenePhase == .active {
+                    homeScreenVM.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                } else {
+                    homeScreenVM.timer.upstream.connect().cancel()
+                }
+            }
         } //: NavigationStack
     }
 }

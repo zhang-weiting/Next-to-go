@@ -18,6 +18,7 @@ class HomeScreenVM {
         self.apiClient = apiClient
     }
     
+    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var errorMessage = ""
     var filters: Set<Race.Category> = [.horse, .greyhound, .harness]
     
