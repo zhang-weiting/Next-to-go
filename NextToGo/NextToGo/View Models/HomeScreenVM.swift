@@ -45,7 +45,6 @@ class HomeScreenVM {
         } else {
             filters.remove(race)
         }
-        print(filters)
     }
     
     func renderedList() -> [Race] {

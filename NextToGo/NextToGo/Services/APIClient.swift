@@ -14,7 +14,7 @@ protocol NextRacesFetching {
 struct APIClient: NextRacesFetching {
     
     private let session: URLSession
-
+    
     init(session: URLSession = URLSession.shared) {
         self.session = session
     }
@@ -36,7 +36,9 @@ struct APIClient: NextRacesFetching {
         }
         do {
             let nextRacesResponse = try JSONDecoder().decode(NextRacesResponse.self, from: data)
-            return nextRacesResponse.races
+            return nextRacesResponse.data.nextToGoIds
+                .compactMap { nextRacesResponse.data.raceSummaries[$0] }
+                .compactMap { Race(summary: $0) }
         } catch {
             throw NetworkError.decodingError
         }

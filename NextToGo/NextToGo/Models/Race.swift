@@ -7,36 +7,12 @@
 
 import Foundation
 
-struct Race: Decodable {
+struct Race {
     let raceId: String
     let meetingName: String
     let raceNumber: Int
     let advertisedStart: Double
     let category: Category
-    
-    private enum CodingKeys: String, CodingKey {
-        case raceId = "race_id"
-        case meetingName = "meeting_name"
-        case raceNumber = "race_number"
-        case advertisedStart = "advertised_start"
-        case category = "category_id"
-    }
-    
-    private enum AdvertisedStartKeys: String, CodingKey {
-        case seconds = "seconds"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let nestedContainer = try container.nestedContainer(keyedBy: AdvertisedStartKeys.self, forKey: .advertisedStart)
-        raceId = try container.decode(String.self, forKey: .raceId)
-        meetingName = try container.decode(String.self, forKey: .meetingName)
-        raceNumber = try container.decode(Int.self, forKey: .raceNumber)
-        advertisedStart = try nestedContainer.decode(Double.self, forKey: .seconds)
-        let categoryID = try container.decode(String.self, forKey: .category)
-        category = Category(rawValue: categoryID) ?? .horse
-        
-    }
 }
 
 
