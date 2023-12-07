@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeScreen: View {
     
-    @Environment(\.scenePhase) var scenePhase
     @State private var homeScreenVM = HomeScreenVM(apiClient: APIClient())
     
     var body: some View {
@@ -43,13 +42,6 @@ struct HomeScreen: View {
             .alert(isPresented: $homeScreenVM.showAlert, content: {
                 Alert(title: Text(homeScreenVM.errorMessage))
             })
-            .onChange(of: scenePhase) {
-                if scenePhase == .active {
-                    Task {
-                        await homeScreenVM.fetchNextRaces()
-                    }
-                }
-            }
         } //: NavigationStack
     }
 }
