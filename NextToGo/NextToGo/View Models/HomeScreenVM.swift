@@ -18,6 +18,7 @@ class HomeScreenVM {
         self.apiClient = apiClient
     }
     
+    var showAlert = false
     var errorMessage = ""
     var filters: Set<Race.Category> = [.horse, .greyhound, .harness]
     

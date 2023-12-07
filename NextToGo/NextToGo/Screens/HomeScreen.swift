@@ -35,6 +35,14 @@ struct HomeScreen: View {
             } //: VStack
             .navigationTitle("NEXT TO GO RACING")
             .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: homeScreenVM.errorMessage, { _, newValue in
+                if !newValue.isEmpty {
+                    homeScreenVM.showAlert = true
+                }
+            })
+            .alert(isPresented: $homeScreenVM.showAlert, content: {
+                Alert(title: Text(homeScreenVM.errorMessage))
+            })
             .onChange(of: scenePhase) {
                 if scenePhase == .active {
                     Task {
