@@ -24,7 +24,7 @@ struct HomeScreen: View {
                     .background(.ultraThinMaterial)
                 
                 //MARK: - Race List
-                List(homeScreenVM.filteredRaceList, id: \.raceId) { race in
+                List(homeScreenVM.renderedList(), id: \.raceId) { race in
                     LabeledContentCell(race: race)
                 }
                 .task {

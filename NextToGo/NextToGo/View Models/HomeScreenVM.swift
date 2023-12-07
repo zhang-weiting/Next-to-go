@@ -21,11 +21,12 @@ class HomeScreenVM {
     var errorMessage = ""
     var filters: Set<Race.Category> = [.horse, .greyhound, .harness]
     
-    var filteredRaceList: [Race] {
-        let sorted = raceList.sorted {
-            $0.advertisedStart < $1.advertisedStart
-        }
-        return sorted.filter { filters.contains($0.category) }
+    var sortedRaceList: [Race] {
+        raceList.sorted { $0.advertisedStart < $1.advertisedStart }
+    }
+    
+    var sortedNfilteredRaceList: [Race] {
+        sortedRaceList.filter { filters.contains($0.category) }
     }
     
     func fetchNextRaces() async {
@@ -42,6 +43,15 @@ class HomeScreenVM {
             filters.insert(race)
         } else {
             filters.remove(race)
+        }
+        print(filters)
+    }
+    
+    func renderedList() -> [Race] {
+        if filters.isEmpty {
+            return Array(sortedRaceList.suffix(5))
+        } else {
+            return Array(sortedNfilteredRaceList.prefix(5))
         }
     }
     
