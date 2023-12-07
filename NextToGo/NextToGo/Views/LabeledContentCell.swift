@@ -10,7 +10,7 @@ import SwiftUI
 struct LabeledContentCell: View {
     
     var race: Race
-    
+    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var timeCountDown = ""
     @Bindable var homeScreenVM: HomeScreenVM
     
@@ -27,11 +27,18 @@ struct LabeledContentCell: View {
                 Text(race.meetingName)
             }
         }
-        .onReceive(homeScreenVM.timer, perform: { _ in
-            timeCountDown = race.advertisedStart.formatted(.countdown)
+        .onReceive(timer, perform: { _ in
+            timeCountDown = homeScreenVM.countdown(advertisedStart: race.advertisedStart)
         })
         .onAppear {
-            timeCountDown = race.advertisedStart.formatted(.countdown)
+            timeCountDown = homeScreenVM.countdown(advertisedStart: race.advertisedStart)
+        }
+        .onDisappear {
+            timer.upstream.connect().cancel()
         }
     }
+}
+
+#Preview {
+    LabeledContentCell(race: Race(raceId: "123", meetingName: "meeting name", raceNumber: 1, advertisedStart: 171299000, category: .horse), homeScreenVM: HomeScreenVM(apiClient: APIClient()))
 }

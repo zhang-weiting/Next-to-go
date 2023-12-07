@@ -35,12 +35,11 @@ struct HomeScreen: View {
             } //: VStack
             .navigationTitle("NEXT TO GO RACING")
             .navigationBarTitleDisplayMode(.inline)
-            
             .onChange(of: scenePhase) {
                 if scenePhase == .active {
-                    homeScreenVM.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                } else {
-                    homeScreenVM.timer.upstream.connect().cancel()
+                    Task {
+                        await homeScreenVM.fetchNextRaces()
+                    }
                 }
             }
         } //: NavigationStack

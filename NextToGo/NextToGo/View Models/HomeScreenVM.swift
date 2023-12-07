@@ -18,7 +18,6 @@ class HomeScreenVM {
         self.apiClient = apiClient
     }
     
-    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var errorMessage = ""
     var filters: Set<Race.Category> = [.horse, .greyhound, .harness]
     
@@ -31,6 +30,7 @@ class HomeScreenVM {
     }
     
     func fetchNextRaces() async {
+        errorMessage = ""
         do {
             raceList = try await apiClient.fetchNextRaces()
         } catch {
@@ -55,4 +55,28 @@ class HomeScreenVM {
         }
     }
     
+    func countdown(advertisedStart: Double) -> String {
+        let now = Date()
+        let time = Int(advertisedStart - now.timeIntervalSince1970)
+        let hour =  time / 3600
+        let minute = (time % 3600) / 60
+        let second = (time % 3600) % 60
+        
+        var countdownDisplay = ""
+        if hour > 0 {
+            countdownDisplay += "\(hour)h"
+        }
+        if minute != 0 {
+            countdownDisplay += " \(minute)m"
+        }
+        countdownDisplay += " \(second)s"
+        if minute <= -1 {
+            raceList.removeFirst()
+            Task {
+                await fetchNextRaces()
+            }
+            return ""
+        }
+        return countdownDisplay
+    }
 }
