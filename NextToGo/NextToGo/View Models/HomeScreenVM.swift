@@ -11,7 +11,7 @@ import Observation
 @Observable
 class HomeScreenVM {
     
-    private var raceList: [Race] = []
+    var raceList: [Race] = []
     private let apiClient: NextRacesFetching
     
     init(apiClient: NextRacesFetching) {
@@ -76,9 +76,8 @@ class HomeScreenVM {
      - Parameters race: the Race to apply the countdown method.
      
      */
-    func countdown(race: Race) -> String {
-        let now = Date()
-        let time = Int(race.advertisedStart - now.timeIntervalSince1970)
+    func countdown(race: Race, current: Date = Date()) -> String {
+        let time = Int(race.advertisedStart - current.timeIntervalSince1970)
         let hour =  time / 3600
         let minute = (time % 3600) / 60
         let second = (time % 3600) % 60

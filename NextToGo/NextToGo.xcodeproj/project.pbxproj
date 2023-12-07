@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC76D5722B2129F5007C9241 /* RaceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76D5712B2129F5007C9241 /* RaceViewModelTests.swift */; };
+		DC76D5722B2129F5007C9241 /* HomeScreenVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76D5712B2129F5007C9241 /* HomeScreenVMTests.swift */; };
 		DC76D5752B216C14007C9241 /* CountDownFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76D5742B216C14007C9241 /* CountDownFormat.swift */; };
 		DC76D5772B217607007C9241 /* LabeledContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76D5762B217607007C9241 /* LabeledContentCell.swift */; };
 		DCADE0F32B206E0F00799B55 /* NextToGoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE0F22B206E0F00799B55 /* NextToGoApp.swift */; };
@@ -47,7 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DC76D5712B2129F5007C9241 /* RaceViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceViewModelTests.swift; sourceTree = "<group>"; };
+		DC76D5712B2129F5007C9241 /* HomeScreenVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVMTests.swift; sourceTree = "<group>"; };
 		DC76D5742B216C14007C9241 /* CountDownFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownFormat.swift; sourceTree = "<group>"; };
 		DC76D5762B217607007C9241 /* LabeledContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledContentCell.swift; sourceTree = "<group>"; };
 		DCADE0EF2B206E0F00799B55 /* NextToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextToGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				DCADE1032B206E1100799B55 /* NextToGoTests.swift */,
-				DC76D5712B2129F5007C9241 /* RaceViewModelTests.swift */,
+				DC76D5712B2129F5007C9241 /* HomeScreenVMTests.swift */,
 			);
 			path = NextToGoTests;
 			sourceTree = "<group>";
@@ -382,7 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCADE1042B206E1100799B55 /* NextToGoTests.swift in Sources */,
-				DC76D5722B2129F5007C9241 /* RaceViewModelTests.swift in Sources */,
+				DC76D5722B2129F5007C9241 /* HomeScreenVMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
