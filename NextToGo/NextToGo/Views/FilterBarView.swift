@@ -20,7 +20,7 @@ struct FilterBarView: View {
                 })
             }
             Spacer()
-        }
+        } //: HStack
     }
 }
 

@@ -27,8 +27,7 @@ struct IndicatorImageView: View {
                 .frame(width: 80, height: 5)
                 .foregroundStyle(isSelected ? Color.customOrangeLight : .clear)
                 .animation(.default, value: isSelected)
-            
-        }
+        } //: VStack
     }
 }
 

@@ -28,10 +28,10 @@ struct LabeledContentCell: View {
             }
         }
         .onReceive(timer, perform: { _ in
-            timeCountDown = homeScreenVM.countdown(advertisedStart: race.advertisedStart)
+            timeCountDown = homeScreenVM.countdown(race: race)
         })
         .onAppear {
-            timeCountDown = homeScreenVM.countdown(advertisedStart: race.advertisedStart)
+            timeCountDown = homeScreenVM.countdown(race: race)
         }
         .onDisappear {
             timer.upstream.connect().cancel()

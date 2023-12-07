@@ -7,6 +7,7 @@
 
 import Foundation
 
+//TODO: TO be cleaned up (this was the first approach since not too sure about what seconds represents in advertised_start
 struct CountDownFormat: FormatStyle {
     func format(_ value: TimeInterval) -> String {
         let now = Date()
