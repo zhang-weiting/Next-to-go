@@ -11,7 +11,7 @@ struct Race: Equatable {
     let raceId: String
     let meetingName: String
     let raceNumber: Int
-    let advertisedStart: Double
+    let remainingSeconds: Int
     let category: Category
 }
 

@@ -55,8 +55,9 @@ extension Race {
         let raceNumber = summary.raceNumber
         let meetingName = summary.meetingName
         let advertisedStart = summary.advertisedStart.seconds
+        let remainingSeconds = Int(advertisedStart - Date().timeIntervalSince1970)
         let category = Category(rawValue:summary.categoryId) ?? .horse
 
-        self.init(raceId: raceId, meetingName: meetingName, raceNumber: raceNumber, advertisedStart: advertisedStart, category: category)
+        self.init(raceId: raceId, meetingName: meetingName, raceNumber: raceNumber, remainingSeconds: remainingSeconds, category: category)
     }
 }

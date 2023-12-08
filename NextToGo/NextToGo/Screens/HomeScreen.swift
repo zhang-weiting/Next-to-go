@@ -34,6 +34,12 @@ struct HomeScreen: View {
             } //: VStack
             .navigationTitle("NEXT TO GO RACING")
             .navigationBarTitleDisplayMode(.inline)
+            .onReceive(homeScreenVM.timer, perform: { _ in
+                homeScreenVM.countdown()
+            })
+            .onAppear {
+                homeScreenVM.countdown()
+            }
             .onChange(of: homeScreenVM.errorMessage, { _, newValue in
                 if !newValue.isEmpty {
                     homeScreenVM.showAlert = true

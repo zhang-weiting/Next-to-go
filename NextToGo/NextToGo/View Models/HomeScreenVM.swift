@@ -11,25 +11,29 @@ import Observation
 @Observable
 class HomeScreenVM {
     
-    var raceList: [Race] = []
     private let apiClient: NextRacesFetching
     
     init(apiClient: NextRacesFetching) {
         self.apiClient = apiClient
     }
     
+    var raceList: [Race] = []
+    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var showAlert = false
     var errorMessage = ""
     var filters: Set<Race.Category> = [.horse, .greyhound, .harness]
     
     ///sorted race list in ascending order
     var sortedRaceList: [Race] {
-        raceList.sorted { $0.advertisedStart < $1.advertisedStart }
+        raceList.sorted { $0.remainingSeconds < $1.remainingSeconds }
     }
     
     ///a sorted race list with category filters applied
     var sortedNfilteredRaceList: [Race] {
-        sortedRaceList.filter { filters.contains($0.category) }
+        //the following need to be updated once knowning the expected behavior of the API
+        //noticed that sometime it will give me the races that more than 1 min passed, which will affect the expected behavior of the app
+        sortedRaceList
+            .filter { filters.contains($0.category) && $0.remainingSeconds > -59}
     }
     
     /**
@@ -76,30 +80,43 @@ class HomeScreenVM {
      - Parameters race: the Race to apply the countdown method.
      
      */
-    func countdown(race: Race, current: Date = Date()) -> String {
-        let time = Int(race.advertisedStart - current.timeIntervalSince1970)
-        let hour =  time / 3600
-        let minute = (time % 3600) / 60
-        let second = (time % 3600) % 60
-        
-        var countdownDisplay = ""
+    func countdown(current: Date = Date()) {
+        var updateRaceList = [Race]()
+        for race in sortedNfilteredRaceList {
+            let newRace = Race(
+                raceId: race.raceId,
+                meetingName: race.meetingName,
+                raceNumber: race.raceNumber,
+                remainingSeconds: race.remainingSeconds - 1,
+                category: race.category
+            )
+            if newRace.remainingSeconds < -59 {
+                let index = raceList.firstIndex{ $0 == race }
+                if let index = index {
+                    raceList.remove(at: index)
+                }
+                Task {
+                    await fetchNextRaces()
+                }
+            } else {
+                updateRaceList.append(newRace)
+            }
+        }
+        raceList = updateRaceList
+    }
+    
+    func formatted(_ seconds: Int) -> String {
+        let hour =  seconds / 3600
+        let minute = (seconds % 3600) / 60
+        let second = (seconds % 3600) % 60
+        var formattedString = ""
         if hour > 0 {
-            countdownDisplay += "\(hour)h"
+            formattedString += "\(hour)h"
         }
         if minute != 0 {
-            countdownDisplay += " \(minute)m"
+            formattedString += " \(minute)m"
         }
-        countdownDisplay += " \(second)s"
-        if minute <= -1 {
-            let index = raceList.firstIndex{ $0 == race }
-            if let index = index {
-                raceList.remove(at: index)
-            }
-            Task {
-                await fetchNextRaces()
-            }
-            return ""
-        }
-        return countdownDisplay
+        formattedString += " \(second)s"
+        return formattedString
     }
 }
