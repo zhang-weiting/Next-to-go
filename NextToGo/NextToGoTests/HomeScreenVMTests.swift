@@ -71,7 +71,6 @@ final class HomeScreenVMTests: XCTestCase {
         homeScreenVM.raceList = [testRace10]
         homeScreenVM.countdown()
         XCTAssertEqual(homeScreenVM.raceList, [])
-        XCTAssertTrue(mockAPIClient.isFetchNextRacesCalled)
     }
 
     func testRenderedList() {

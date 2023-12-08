@@ -28,12 +28,14 @@ class HomeScreenVM {
         raceList.sorted { $0.remainingSeconds < $1.remainingSeconds }
     }
     
+    ///filter race list in to exclude the races that are more than 1 min old
+    var filteredRaceList: [Race] {
+        raceList.filter{ $0.remainingSeconds > -59 }
+    }
+    
     ///a sorted race list with category filters applied
     var sortedNfilteredRaceList: [Race] {
-        //the following need to be updated once knowning the expected behavior of the API
-        //noticed that sometime it will give me the races that more than 1 min passed, which will affect the expected behavior of the app
-        sortedRaceList
-            .filter { filters.contains($0.category) && $0.remainingSeconds > -59}
+        sortedRaceList.filter { filters.contains($0.category) }
     }
     
     /**
@@ -82,7 +84,7 @@ class HomeScreenVM {
      */
     func countdown(current: Date = Date()) {
         var updateRaceList = [Race]()
-        for race in sortedNfilteredRaceList {
+        for race in filteredRaceList {
             let newRace = Race(
                 raceId: race.raceId,
                 meetingName: race.meetingName,
