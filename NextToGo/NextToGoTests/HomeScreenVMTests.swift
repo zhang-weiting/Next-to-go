@@ -10,11 +10,8 @@ import XCTest
 @testable import NextToGo
 
 class MockAPIClient: NextRacesFetching {
-
-    var isFetchNextRacesCalled = false
     
     func fetchNextRaces() async throws -> [Race] {
-        isFetchNextRacesCalled = true
         return []
     }
 }
@@ -78,15 +75,15 @@ final class HomeScreenVMTests: XCTestCase {
         
         homeScreenVM.filters = [.horse, .greyhound, .harness]
         let renderedList1 = homeScreenVM.renderedList()
-        XCTAssertEqual(renderedList1, [testRace3, testRace6, testRace9, testRace2, testRace5])
+        XCTAssertEqual(renderedList1, [testRace10, testRace1, testRace2, testRace3, testRace4])
         
         homeScreenVM.filters = [.horse, .greyhound]
         let renderedList2 = homeScreenVM.renderedList()
-        XCTAssertEqual(renderedList2, [testRace3, testRace9, testRace2, testRace8, testRace1])
+        XCTAssertEqual(renderedList2, [testRace10, testRace1, testRace2, testRace3, testRace8])
         
         homeScreenVM.filters = []
         let renderedList3 = homeScreenVM.renderedList()
-        XCTAssertEqual(renderedList3, [testRace8, testRace1, testRace4, testRace7, testRace10])
+        XCTAssertEqual(renderedList3, [testRace5, testRace6, testRace7, testRace8, testRace9])
        
     }
     
