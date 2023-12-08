@@ -30,7 +30,7 @@ class HomeScreenVM {
     
     ///filter race list in to exclude the races that are more than 1 min old
     var filteredRaceList: [Race] {
-        raceList.filter{ $0.remainingSeconds > -59 }
+        raceList.filter{ $0.remainingSeconds >= -60 }
     }
     
     ///a sorted race list with category filters applied

@@ -11,7 +11,10 @@ import XCTest
 
 class MockAPIClient: NextRacesFetching {
     
+    var isFetchingNextRacesCalled = false
+    
     func fetchNextRaces() async throws -> [Race] {
+        isFetchingNextRacesCalled = true
         return []
     }
 }
@@ -53,6 +56,30 @@ final class HomeScreenVMTests: XCTestCase {
         testRace3 = nil
     }
     
+    func testformatted() {
+        let formatted1 = homeScreenVM.formatted(testRace1.remainingSeconds)
+        let formatted2 = homeScreenVM.formatted(testRace2.remainingSeconds)
+        let formatted3 = homeScreenVM.formatted(testRace3.remainingSeconds)
+        let formatted4 = homeScreenVM.formatted(testRace4.remainingSeconds)
+        let formatted5 = homeScreenVM.formatted(testRace5.remainingSeconds)
+        let formatted6 = homeScreenVM.formatted(testRace6.remainingSeconds)
+        let formatted7 = homeScreenVM.formatted(testRace7.remainingSeconds)
+        let formatted8 = homeScreenVM.formatted(testRace8.remainingSeconds)
+        let formatted9 = homeScreenVM.formatted(testRace9.remainingSeconds)
+        let formatted10 = homeScreenVM.formatted(testRace10.remainingSeconds)
+        
+        XCTAssertEqual(formatted1, " -10s")
+        XCTAssertEqual(formatted2, " -9s")
+        XCTAssertEqual(formatted3, " -8s")
+        XCTAssertEqual(formatted4, " -7s")
+        XCTAssertEqual(formatted5, " 0s")
+        XCTAssertEqual(formatted6, " 1s")
+        XCTAssertEqual(formatted7, " 2s")
+        XCTAssertEqual(formatted8, " 3s")
+        XCTAssertEqual(formatted9, " 4s")
+        XCTAssertEqual(formatted10, " -1m 0s")
+    }
+    
     func testCountdown() {
         
         homeScreenVM.raceList = [testRace1, testRace2, testRace3]
@@ -68,6 +95,7 @@ final class HomeScreenVMTests: XCTestCase {
         homeScreenVM.raceList = [testRace10]
         homeScreenVM.countdown()
         XCTAssertEqual(homeScreenVM.raceList, [])
+        XCTAssertTrue(mockAPIClient.isFetchingNextRacesCalled)
     }
 
     func testRenderedList() {
