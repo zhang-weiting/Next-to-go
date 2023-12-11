@@ -27,6 +27,7 @@
 		DCADE13C2B20924B00799B55 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE13B2B20924B00799B55 /* NetworkError.swift */; };
 		DCADE1412B20B83800799B55 /* HomeScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1402B20B83800799B55 /* HomeScreenVM.swift */; };
 		DCADE1452B20C84900799B55 /* IndicatorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADE1442B20C84900799B55 /* IndicatorImageView.swift */; };
+		DCD925EC2B26B21300F27B77 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD925EB2B26B21300F27B77 /* APIClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		DCADE13B2B20924B00799B55 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DCADE1402B20B83800799B55 /* HomeScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVM.swift; sourceTree = "<group>"; };
 		DCADE1442B20C84900799B55 /* IndicatorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorImageView.swift; sourceTree = "<group>"; };
+		DCD925EB2B26B21300F27B77 /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				DCADE1032B206E1100799B55 /* NextToGoTests.swift */,
 				DC76D5712B2129F5007C9241 /* HomeScreenVMTests.swift */,
+				DCD925EB2B26B21300F27B77 /* APIClientTests.swift */,
 			);
 			path = NextToGoTests;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD925EC2B26B21300F27B77 /* APIClientTests.swift in Sources */,
 				DCADE1042B206E1100799B55 /* NextToGoTests.swift in Sources */,
 				DC76D5722B2129F5007C9241 /* HomeScreenVMTests.swift in Sources */,
 			);
