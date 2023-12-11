@@ -14,9 +14,9 @@ struct FilterBarView: View {
     var body: some View {
         HStack(spacing: 25) {
             Spacer()
-            ForEach(Race.Category.allCases, id: \.self) { race in
-                IndicatorImageView(race: race, handler: { selected in
-                    homeScreenVM.updateFilters(race: race, selected: selected)
+            ForEach(Race.Category.allCases, id: \.self) { category in
+                IndicatorImageView(category: category, handler: { selected in
+                    homeScreenVM.updateFilter(category, selected: selected)
                 })
             }
             Spacer()
