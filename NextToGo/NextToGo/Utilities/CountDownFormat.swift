@@ -8,12 +8,13 @@
 import Foundation
 
 struct CountDownFormat: FormatStyle {
+    
+    ///an alternative way to display the countdown
     func format(_ value: TimeInterval) -> String {
-        let time = value - Date().timeIntervalSince1970
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .abbreviated
-        return formatter.string(from: time) ?? ""
+        return formatter.string(from: value) ?? ""
     }
 }
 
