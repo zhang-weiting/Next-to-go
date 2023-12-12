@@ -126,16 +126,10 @@ final class APIClientTests: XCTestCase {
                 raceId: "09ea0f04-a207-4986-b5dd-1f4cb102126f",
                 meetingName: "Kasamatsu",
                 raceNumber: 5,
-                remainingSeconds: 0,
+                remainingSeconds: Int(1702267800 - Date().timeIntervalSince1970), //an alternative way to test without using reference date
                 category: .horse
             )
-            if let firstRace = list.first {
-                XCTAssertEqual(firstRace.raceId, expectedRace.raceId)
-                XCTAssertEqual(firstRace.meetingName, expectedRace.meetingName)
-                XCTAssertEqual(firstRace.raceNumber, expectedRace.raceNumber)
-                XCTAssertEqual(firstRace.category, expectedRace.category)
-                //TODO: in order to test remaing seconds, injecting a reference date for the comparison operation
-            }
+            XCTAssertEqual(list, [expectedRace])
         } catch {
             XCTFail("Expected success but got throws")
         }
